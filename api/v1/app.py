@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 """ The main app """
 from flask import Flask
+from flask_cors import CORS
 from api.v1.views import app_views
 from models import storage
 
 # Create Flask app
 app = Flask(__name__)
+
+# COR (HTTP access control)
+CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 # Register blueprint
 app.register_blueprint(app_views, url_prefix='/api/v1')
