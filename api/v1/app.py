@@ -15,6 +15,12 @@ app.register_blueprint(app_views, url_prefix='/api/v1')
 def teardown_appcontext(exception):
     storage.close()
 
+# 404 error handler
+@app.errorhandler(404)
+def not_found(error):
+    """Handle 404 errors by returning a JSON-formatted response"""
+    return jsonify({"error": "Not found"}), 404
+
 
 # Run the app if this file is executed directly
 if __name__ == '__main__':
