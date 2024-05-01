@@ -2,7 +2,6 @@
 """ Blueprint for flask  """
 
 from flask import Blueprint
-# Import views
 from api.v1.views.index import *
 from api.v1.views.index import app_views
 from api.v1.views import states

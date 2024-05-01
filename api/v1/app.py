@@ -4,6 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from api.v1.views import app_views
 from models import storage
+import os
 
 # Create Flask app
 app = Flask(__name__)
