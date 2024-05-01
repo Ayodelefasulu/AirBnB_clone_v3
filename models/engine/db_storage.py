@@ -84,10 +84,13 @@ class DBStorage:
         Returns:
             The object matching the class and ID, or None if not found.
         """
+        if not isinstance(cls, type):
+            raise TypeError("cls argument must be a class")
+        if not isinstance(id, str):
+            raise TypeError("id argument must be a string")
 
         if cls is not None and id is not None:
-            query = self.__session.query(cls).filter_by(id=id).first()
-            return query
+            return self.__session.query(cls).filter_by(id=id).first()
         return None
 
     def count(self, cls=None):
@@ -102,7 +105,5 @@ class DBStorage:
             int: The number of objects in storage matching the class.
         """
 
-        if cls is not None:
-            count = self.__session.query(cls).count()
-            return count
-        return self.__session.query(BaseModel).count()
+        query = self.__session.query(cls or BaseModel)  # Use cls or BaseModel
+        return query.count()
