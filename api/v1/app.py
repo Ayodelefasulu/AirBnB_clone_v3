@@ -14,10 +14,12 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 # Register blueprint
 app.register_blueprint(app_views, url_prefix='/api/v1')
 
+
 # Teardown app context to close database connection
 @app.teardown_appcontext
 def teardown_appcontext(exception):
     storage.close()
+
 
 # 404 error handler
 @app.errorhandler(404)
