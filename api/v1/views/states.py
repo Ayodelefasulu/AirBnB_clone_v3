@@ -2,7 +2,8 @@
 """State api endpoints"""
 from api.v1.views import app_views
 from flask import jsonify, request
-from models import storage, State
+from models import storage
+from models.state import State
 
 @app_views.route('/states', methods=['GET'])
 def get_all_states():

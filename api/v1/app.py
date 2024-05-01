@@ -11,7 +11,7 @@ Attributes:
 
 from flask import Flask, jsonify
 from flask_cors import CORS
-from api.v1.views import app_views
+from api.v1.views import create_app
 from models import storage
 import os
 
@@ -22,8 +22,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 # Register the blueprint with the application
-app.register_blueprint(app_views, url_prefix='/api/v1')
-
+create_app(app)  # Call create_app function to register blueprints
 
 def teardown_appcontext(exception):
     """Close the database connection when the app context ends.

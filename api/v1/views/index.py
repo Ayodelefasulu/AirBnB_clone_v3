@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Index page of the app """
 
-from flask import jsonify
+from flask import jsonify, Blueprint
 from models import storage
 from api.v1.views import app_views
 from models.amenity import Amenity
@@ -11,6 +11,8 @@ from models.review import Review
 from models.state import State
 from models.user import User
 
+
+app_views = Blueprint('app_views', __name__)
 
 @app_views.route('/status', methods=['GET'])
 def get_status():

@@ -2,7 +2,10 @@
 """ Places_reviews API endpoints  """
 from api.v1.views import app_views
 from flask import jsonify, request, abort
-from models import storage, Review, Place, User
+from models import storage
+from models.review import Review
+from models.place import Place
+from models.user import User
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET'])
 def get_reviews_by_place(place_id):
