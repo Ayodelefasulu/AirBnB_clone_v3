@@ -19,7 +19,7 @@ import os
 app = Flask(__name__)
 
 # Enable CORS (Cross-Origin Resource Sharing) for HTTP access control
-CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/*": {"origins": "http://0.0.0.0:5000"}})
 
 # Register the blueprint with the application
 create_app(app)  # Call create_app function to register blueprints
