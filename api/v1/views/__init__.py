@@ -11,6 +11,4 @@ from api.v1.views import places
 from api.v1.views import places_reviews
 
 # Create Blueprint
-def create_app(app):
-    """Register blueprint"""
-    app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
+app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')

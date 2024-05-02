@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Index page of the app """
 
-from flask import jsonify, Blueprint
+from flask import Flask, jsonify, Blueprint
 from models import storage
 from api.v1.views import app_views
 from models.amenity import Amenity
@@ -12,9 +12,9 @@ from models.state import State
 from models.user import User
 
 
-app_views = Blueprint('app_views', __name__)
+# app_views = Blueprint('app_views', __name__)
 
-@app_views.route('/status', methods=['GET'])
+@app_views.route('/status', methods=['GET'], strict_slashes=False)
 def get_status():
     """Endpoint to check the status of the API.
 
@@ -24,13 +24,14 @@ def get_status():
     return jsonify({"status": "OK"})
 
 
-@app_views.route('/stats', methods=['GET'])
+@app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def get_stats():
     """Retrieve the number of each object type.
 
     Returns:
         JSON response containing the counts of different object types.
     """
+    print("This is not working")
     stats = {
         "amenities": storage.count(Amenity),
         "cities": storage.count(City),

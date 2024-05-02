@@ -9,29 +9,20 @@ Attributes:
     app: A Flask instance representing the application.
 """
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Blueprint, make_response
 from flask_cors import CORS
-from api.v1.views import create_app
+from api.v1.views import app_views
 from models import storage
 import os
 
 # Create Flask app
 app = Flask(__name__)
 
+# Register blueprint
+app.register_blueprint(app_views)
+
 # Enable CORS (Cross-Origin Resource Sharing) for HTTP access control
-cors = CORS(app, resources={r"/api/*": {"origins": "http://0.0.0.0:5000"}})
-
-# Register the blueprint with the application
-create_app(app)  # Call create_app function to register blueprints
-
-def teardown_appcontext(exception):
-    """Close the database connection when the app context ends.
-
-    Args:
-        exception: The exception, if any, occurred during app context teardown.
-    """
-    storage.close()
-
+cors = CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
 
 # Set up app context teardown handler
 @app.teardown_appcontext
